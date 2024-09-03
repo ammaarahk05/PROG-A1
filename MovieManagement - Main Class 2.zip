@@ -1,0 +1,84 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.moviemanagement;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author ammaa
+ */
+public class MovieManagement {
+
+  /*
+    A Movie application designed to manage a collection of movies. It allows users 
+    to add movies, search for movies, delete movies, and also display movies.
+    */
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Movies movieManager = new Movies(10);
+
+
+        boolean running = true;
+        while (running) {
+            System.out.println("Movie Management System");
+            System.out.println("1. Add Movie");
+            System.out.println("2. Search Movie");
+            System.out.println("3. Delete Movie");
+            System.out.println("4. Display All Movies");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter genre: ");
+                    String genre = scanner.nextLine();
+                    System.out.print("Enter release year: ");
+                    int releaseYear = Integer.parseInt(scanner.nextLine());
+                    movieManager.addMovie(title, genre, releaseYear);
+                    break;
+                case 2:
+                    System.out.print("Enter title to search: ");
+                    String searchTitle = scanner.nextLine();
+                    Movies movie = movieManager.searchMovie(searchTitle);
+                    if (movie != null) {
+                        movie.displayDetails();
+                    } else {
+                        System.out.println("Movie not found.");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Enter title to delete: ");
+                    String deleteTitle = scanner.nextLine();
+                    movieManager.deleteMovie(deleteTitle);
+                    break;
+                case 4:
+                    movieManager.displayAllMovies();
+                    break;
+                case 5:
+                    running = false;
+                    System.out.println("Exiting Application...");
+                    break;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+        scanner.close();
+    }
+}
+
+
+/*
+references for the entire movieManagement Program:
+Class Activity: Constructors Activity MoviesOnUs
+*/
+
+
+
+
